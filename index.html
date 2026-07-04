@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나는 초등학교 보안관입니다 — 기사·리뷰 모음</title>
+<meta name="description" content="이상인 저 『나는 초등학교 보안관입니다』(지식의날개)의 뉴스 기사와 리뷰를 한 곳에 모았습니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2A4A;       /* 보안관 제복 남색 */
+  --navy-deep:#131F38;
+  --yellow:#FFC93C;     /* 어린이 보호구역 노랑 */
+  --paper:#FAF8F3;      /* 공책 종이 */
+  --ink:#232A3D;
+  --line:#E4E0D6;       /* 공책 줄 */
+  --muted:#6B7080;
+  --stamp:#C64B3C;      /* 도장 빨강 */
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:17px}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,'Noto Sans KR',sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+/* ── 헤더: 학교 정문 게시판 ── */
+header{background:var(--navy);color:#fff;padding:3.2rem 1.4rem 2.6rem;text-align:center;position:relative}
+/* 시그니처: 안전 차단봉 사선 스트라이프 */
+header::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:10px;
+  background:repeating-linear-gradient(-45deg,var(--yellow) 0 18px,var(--navy-deep) 18px 36px);
+}
+.eyebrow{
+  display:inline-block;font-size:.82rem;letter-spacing:.14em;color:var(--yellow);
+  border:1px solid rgba(255,201,60,.45);border-radius:999px;padding:.28rem .9rem;margin-bottom:1.1rem;
+}
+h1{
+  font-family:'Gowun Batang',serif;font-weight:700;
+  font-size:clamp(1.7rem,5.4vw,2.7rem);line-height:1.3;letter-spacing:-.01em;
+}
+.byline{margin-top:.7rem;color:rgba(255,255,255,.82);font-size:1rem}
+.byline b{color:#fff}
+.stores{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.stores a{
+  display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);
+  color:#fff;text-decoration:none;font-size:.92rem;font-weight:600;
+  padding:.55rem 1.15rem;border-radius:999px;transition:background .15s,border-color .15s;
+}
+.stores a:hover,.stores a:focus-visible{background:var(--yellow);border-color:var(--yellow);color:var(--navy)}
+.stores a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.updated{margin-top:1.2rem;font-size:.82rem;color:rgba(255,255,255,.55)}
+/* ── 탭 ── */
+main{max-width:760px;margin:0 auto;padding:1.8rem 1.2rem 4rem}
+.tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.6rem}
+.tabs button{
+  font:inherit;font-size:.95rem;font-weight:600;cursor:pointer;
+  background:#fff;border:1.5px solid var(--line);color:var(--muted);
+  padding:.5rem 1.2rem;border-radius:999px;transition:all .15s;
+}
+.tabs button[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.tabs button:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.count{font-size:.85em;opacity:.75;margin-left:.25em}
+/* ── 카드: 공책 한 장 ── */
+.card{
+  display:block;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.25rem 1.35rem;margin-bottom:1rem;text-decoration:none;color:inherit;
+  transition:transform .15s,box-shadow .15s;position:relative;
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(27,42,74,.10)}
+.card:focus-visible{outline:2.5px solid var(--navy);outline-offset:2px}
+.card-top{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.55rem}
+/* 출처 명찰 칩 */
+.chip{
+  font-size:.78rem;font-weight:700;letter-spacing:.02em;
+  padding:.18rem .65rem;border-radius:6px;border:1.5px solid;
+}
+.chip.news{color:var(--navy);border-color:var(--navy);background:rgba(27,42,74,.06)}
+.chip.blog{color:#7A5A00;border-color:#D9A400;background:rgba(255,201,60,.16)}
+.date{font-size:.82rem;color:var(--muted)}
+.badge-new{
+  font-size:.72rem;font-weight:800;color:#fff;background:var(--stamp);
+  padding:.16rem .55rem;border-radius:999px;letter-spacing:.06em;
+}
+.card h2{font-family:'Gowun Batang',serif;font-size:1.14rem;font-weight:700;line-height:1.45;margin-bottom:.4rem}
+.card p{font-size:.94rem;color:#4A5164;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.empty,.error{text-align:center;color:var(--muted);padding:3rem 1rem;font-size:.97rem}
+footer{text-align:center;font-size:.82rem;color:var(--muted);padding:0 1rem 2.5rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="eyebrow">지식의날개 · 2026년 6월 출간</span>
+  <h1>나는 초등학교 보안관입니다</h1>
+  <p class="byline"><b>이상인</b> 지음 — 기사와 리뷰 모음</p>
+  <nav class="stores" aria-label="서점 바로가기">
+    <a href="https://search.kyobobook.co.kr/search?keyword=나는+초등학교+보안관입니다" target="_blank" rel="noopener">교보문고</a>
+    <a href="https://www.yes24.com/product/search?query=나는+초등학교+보안관입니다" target="_blank" rel="noopener">YES24</a>
+    <a href="https://www.aladin.co.kr/search/wsearchresult.aspx?SearchWord=나는+초등학교+보안관입니다" target="_blank" rel="noopener">알라딘</a>
+  </nav>
+  <p class="updated" id="updated"></p>
+</header>
+
+<main>
+  <div class="tabs" role="tablist" aria-label="분류">
+    <button role="tab" aria-selected="true" data-filter="all">전체<span class="count" id="c-all"></span></button>
+    <button role="tab" aria-selected="false" data-filter="news">뉴스 기사<span class="count" id="c-news"></span></button>
+    <button role="tab" aria-selected="false" data-filter="blog">블로그 리뷰<span class="count" id="c-blog"></span></button>
+  </div>
+  <div id="list"></div>
+</main>
+
+<footer>새로운 기사와 리뷰는 6시간마다 자동으로 수집됩니다.</footer>
+
+<script>
+const $list = document.getElementById('list');
+let items = [];
+
+function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+function stripTags(s){return (s||'').replace(/<[^>]*>/g,'');}
+function fmtDate(iso){
+  const d = new Date(iso);
+  if (isNaN(d)) return '';
+  return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일';
+}
+function isNew(iso){
+  const d = new Date(iso);
+  return !isNaN(d) && (Date.now()-d.getTime()) < 7*24*3600*1000;
+}
+
+function render(filter){
+  const rows = items.filter(it => filter==='all' || it.type===filter);
+  if (!rows.length){
+    $list.innerHTML = '<p class="empty">아직 수집된 글이 없습니다. 곧 새 소식이 채워질 거예요.</p>';
+    return;
+  }
+  $list.innerHTML = rows.map(it => `
+    <a class="card" href="${esc(it.link)}" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="chip ${it.type==='news'?'news':'blog'}">${it.type==='news'?'뉴스':'블로그'}${it.source?' · '+esc(it.source):''}</span>
+        <span class="date">${fmtDate(it.date)}</span>
+        ${isNew(it.date)?'<span class="badge-new">NEW</span>':''}
+      </div>
+      <h2>${esc(stripTags(it.title))}</h2>
+      <p>${esc(stripTags(it.description))}</p>
+    </a>`).join('');
+}
+
+document.querySelectorAll('.tabs button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected','false'));
+    btn.setAttribute('aria-selected','true');
+    render(btn.dataset.filter);
+  });
+});
+
+fetch('data.json?_='+Date.now())
+  .then(r=>{if(!r.ok)throw new Error();return r.json();})
+  .then(data=>{
+    items = (data.items||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
+    document.getElementById('c-all').textContent  = '('+items.length+')';
+    document.getElementById('c-news').textContent = '('+items.filter(i=>i.type==='news').length+')';
+    document.getElementById('c-blog').textContent = '('+items.filter(i=>i.type==='blog').length+')';
+    if (data.updated) document.getElementById('updated').textContent = '마지막 업데이트: '+fmtDate(data.updated);
+    render('all');
+  })
+  .catch(()=>{ $list.innerHTML = '<p class="error">데이터를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</p>'; });
+</script>
+</body>
+</html>
